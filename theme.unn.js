@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Best Theme ННГУ
 // @namespace    http://tampermonkey.net/
-// @version      1.2
+// @version      1.2.1
 // @description  Делает тему портала мега крутой
 // @author       You
 // @match        https://portal.unn.ru/*
@@ -269,6 +269,72 @@
             }
         });
     }
+    
+    // Специальный MutationObserver для логотипа - отслеживает появление элементов .logo
+    function setupLogoObserver() {
+        // Вызываем сразу
+        replaceLogo();
+        
+        // Создаем наблюдатель для логотипа
+        const logoObserver = new MutationObserver(function(mutations) {
+            let shouldReplace = false;
+            
+            mutations.forEach(function(mutation) {
+                mutation.addedNodes.forEach(function(node) {
+                    if (node.nodeType === 1) { // Element node
+                        // Проверяем, является ли добавленный узел или его потомок элементом .logo
+                        if (node.classList && node.classList.contains('logo')) {
+                            shouldReplace = true;
+                        } else if (node.querySelector && node.querySelector('.logo')) {
+                            shouldReplace = true;
+                        }
+                    }
+                });
+            });
+            
+            if (shouldReplace) {
+                replaceLogo();
+            }
+        });
+        
+        // Наблюдаем за document.documentElement или body, если они уже есть
+        if (document.documentElement) {
+            logoObserver.observe(document.documentElement, {
+                childList: true,
+                subtree: true
+            });
+        } else if (document.body) {
+            logoObserver.observe(document.body, {
+                childList: true,
+                subtree: true
+            });
+        } else {
+            // Если body еще нет, ждем его
+            const bodyObserver = new MutationObserver(function(mutations, obs) {
+                if (document.body || document.documentElement) {
+                    logoObserver.observe(document.documentElement || document.body, {
+                        childList: true,
+                        subtree: true
+                    });
+                    obs.disconnect();
+                }
+            });
+            bodyObserver.observe(document, {
+                childList: true,
+                subtree: true
+            });
+        }
+        
+        // Также вызываем с минимальными задержками для гарантии
+        setTimeout(replaceLogo, 0);
+        setTimeout(replaceLogo, 10);
+        setTimeout(replaceLogo, 50);
+        setTimeout(replaceLogo, 100);
+        setTimeout(replaceLogo, 200);
+    }
+    
+    // Запускаем наблюдатель для логотипа сразу
+    setupLogoObserver();
 
     function changeHeaderBackground() {
         // Находим элемент хедера
@@ -1404,9 +1470,9 @@
     }
 
     // Запускаем замену при загрузке страницы
+    // replaceLogo() уже вызывается в setupLogoObserver(), поэтому здесь не вызываем
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', function() {
-            replaceLogo();
             changeHeaderBackground();
             changeMenuSwitcherLinesColor();
             changePageBackground();
@@ -1420,7 +1486,6 @@
             stylePornhubButtons();
         });
     } else {
-        replaceLogo();
         changeHeaderBackground();
         changeMenuSwitcherLinesColor();
         changePageBackground();
@@ -1436,7 +1501,6 @@
 
     // Также запускаем замену после небольшой задержки на случай динамической загрузки
     setTimeout(function() {
-        replaceLogo();
         changeHeaderBackground();
         changeMenuSwitcherLinesColor();
         changePageBackground();
@@ -1450,7 +1514,6 @@
         stylePornhubButtons();
     }, 1000);
     setTimeout(function() {
-        replaceLogo();
         changeHeaderBackground();
         changeMenuSwitcherLinesColor();
         changePageBackground();
@@ -1465,8 +1528,8 @@
     }, 3000);
 
     // Используем MutationObserver для отслеживания динамических изменений
+    // replaceLogo() уже отслеживается отдельным observer в setupLogoObserver()
     const observer = new MutationObserver(function(mutations) {
-        replaceLogo();
         changeHeaderBackground();
         changeMenuSwitcherLinesColor();
         changePageBackground();
@@ -1480,9 +1543,26 @@
         stylePornhubButtons();
     });
 
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true
-    });
+    if (document.body) {
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    } else {
+        // Если body еще нет, ждем его
+        const bodyWaitObserver = new MutationObserver(function(mutations, obs) {
+            if (document.body) {
+                observer.observe(document.body, {
+                    childList: true,
+                    subtree: true
+                });
+                obs.disconnect();
+            }
+        });
+        bodyWaitObserver.observe(document.documentElement || document, {
+            childList: true,
+            subtree: true
+        });
+    }
 })();
 
