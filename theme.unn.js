@@ -6,6 +6,7 @@
 // @author       You
 // @match        https://portal.unn.ru/*
 // @match        http://portal.unn.ru/*
+// @run-at       document-start
 // @grant        none
 // ==/UserScript==
 
@@ -14,109 +15,193 @@
 
     // Добавляем критические стили СРАЗУ для предотвращения FOUC
     (function() {
-        const criticalStyles = document.createElement('style');
-        criticalStyles.id = 'pornhub-critical-styles';
-        criticalStyles.textContent = `
-            body {
-                background-color: #000000 !important;
-                background: #000000 !important;
+        function injectStyles() {
+            // Проверяем, не добавлены ли уже стили
+            if (document.getElementById('pornhub-critical-styles')) {
+                return;
             }
-            #header {
-                background-color: #0E0E0E !important;
-                background: #0E0E0E !important;
-            }
-            .menu-switcher-lines,
-            .menu-switcher-lines:before,
-            .menu-switcher-lines:after {
-                background-color: #FF9000 !important;
-                background: #FF9000 !important;
-            }
-            .bx-layout-inner-table,
-            .bx-layout-inner-inner-table {
-                background-color: #000000 !important;
-                background: #000000 !important;
-            }
-            #sonet_log_microblog_container {
-                background-color: #151515 !important;
-                background: #151515 !important;
-                color: #c6c6c6 !important;
-            }
-            .feed-item-wrap,
-            .feed-post-block {
-                background-color: #151515 !important;
-                background: #151515 !important;
-                color: #c6c6c6 !important;
-            }
-            .feed-comments-block-wrap,
-            .feed-com-block {
-                background-color: #151515 !important;
-                background: #151515 !important;
-                color: #c6c6c6 !important;
-            }
-            .workarea-content,
-            .container-fluid,
-            .marks-wrapper {
-                background-color: #000000 !important;
-                background: #000000 !important;
-                color: #c6c6c6 !important;
-            }
-            .table,
-            .table thead,
-            .table th,
-            .table tbody tr,
-            .table td {
-                background-color: #151515 !important;
-                background: #151515 !important;
-                color: #c6c6c6 !important;
-                border-color: #333333 !important;
-            }
-            .menu-top,
-            .menu-top-item {
-                background-color: #151515 !important;
-                background: #151515 !important;
-                color: #c6c6c6 !important;
-            }
-            .dx-tab-panel,
-            .dx-tabs,
-            .dx-tab {
-                background-color: #151515 !important;
-                background: #151515 !important;
-                color: #c6c6c6 !important;
-            }
-            .dx-accordion,
-            .dx-accordion-item {
-                background-color: #151515 !important;
-                background: #151515 !important;
-                color: #c6c6c6 !important;
-            }
-            .pagetitle-wrap {
-                background-color: #151515 !important;
-                background: #151515 !important;
-                color: #c6c6c6 !important;
-            }
-            .sidebar-widget {
-                background-color: #151515 !important;
-                background: #151515 !important;
-                color: #c6c6c6 !important;
-            }
-            .feed-add-post-form {
-                background-color: #151515 !important;
-                background: #151515 !important;
-            }
-        `;
-        
-        // Вставляем стили в head как можно раньше
-        if (document.head) {
-            document.head.insertBefore(criticalStyles, document.head.firstChild);
-        } else {
-            // Если head еще не загружен, ждем его
-            const observer = new MutationObserver(function(mutations, obs) {
-                if (document.head) {
-                    document.head.insertBefore(criticalStyles, document.head.firstChild);
-                    obs.disconnect();
+            
+            const criticalStyles = document.createElement('style');
+            criticalStyles.id = 'pornhub-critical-styles';
+            criticalStyles.textContent = `
+                html {
+                    background-color: #000000 !important;
+                    background: #000000 !important;
                 }
+                body {
+                    background-color: #000000 !important;
+                    background: #000000 !important;
+                }
+                #header {
+                    background-color: #0E0E0E !important;
+                    background: #0E0E0E !important;
+                }
+                .menu-switcher-lines,
+                .menu-switcher-lines:before,
+                .menu-switcher-lines:after {
+                    background-color: #FF9000 !important;
+                    background: #FF9000 !important;
+                }
+                .bx-layout-inner-table,
+                .bx-layout-inner-inner-table {
+                    background-color: #000000 !important;
+                    background: #000000 !important;
+                }
+                #sonet_log_microblog_container {
+                    background-color: #151515 !important;
+                    background: #151515 !important;
+                    color: #c6c6c6 !important;
+                }
+                .feed-item-wrap,
+                .feed-post-block {
+                    background-color: #151515 !important;
+                    background: #151515 !important;
+                    color: #c6c6c6 !important;
+                }
+                .feed-comments-block-wrap,
+                .feed-com-block {
+                    background-color: #151515 !important;
+                    background: #151515 !important;
+                    color: #c6c6c6 !important;
+                }
+                .workarea-content,
+                .container-fluid,
+                .marks-wrapper {
+                    background-color: #000000 !important;
+                    background: #000000 !important;
+                    color: #c6c6c6 !important;
+                }
+                .table,
+                .table thead,
+                .table th,
+                .table tbody tr,
+                .table td {
+                    background-color: #151515 !important;
+                    background: #151515 !important;
+                    color: #c6c6c6 !important;
+                    border-color: #333333 !important;
+                }
+                .menu-top,
+                .menu-top-item {
+                    background-color: #151515 !important;
+                    background: #151515 !important;
+                    color: #c6c6c6 !important;
+                }
+                .dx-tab-panel,
+                .dx-tabs,
+                .dx-tab {
+                    background-color: #151515 !important;
+                    background: #151515 !important;
+                    color: #c6c6c6 !important;
+                }
+                .dx-accordion,
+                .dx-accordion-item {
+                    background-color: #151515 !important;
+                    background: #151515 !important;
+                    color: #c6c6c6 !important;
+                }
+                .pagetitle-wrap {
+                    background-color: #151515 !important;
+                    background: #151515 !important;
+                    color: #c6c6c6 !important;
+                }
+                .sidebar-widget {
+                    background-color: #151515 !important;
+                    background: #151515 !important;
+                    color: #c6c6c6 !important;
+                }
+                .feed-add-post-form {
+                    background-color: #151515 !important;
+                    background: #151515 !important;
+                }
+            `;
+            
+            // Пытаемся вставить стили в head
+            if (document.head) {
+                document.head.insertBefore(criticalStyles, document.head.firstChild);
+            } else if (document.documentElement) {
+                // Если head еще не существует, вставляем в documentElement
+                document.documentElement.insertBefore(criticalStyles, document.documentElement.firstChild);
+            } else {
+                // Если даже documentElement нет, ждем его
+                const observer = new MutationObserver(function(mutations, obs) {
+                    if (document.head) {
+                        document.head.insertBefore(criticalStyles, document.head.firstChild);
+                        obs.disconnect();
+                    } else if (document.documentElement) {
+                        document.documentElement.insertBefore(criticalStyles, document.documentElement.firstChild);
+                        obs.disconnect();
+                    }
+                });
+                if (document.documentElement) {
+                    observer.observe(document.documentElement, { childList: true });
+                } else {
+                    // Если documentElement еще не существует, ждем document
+                    const docObserver = new MutationObserver(function(mutations, obs) {
+                        if (document.documentElement) {
+                            injectStyles();
+                            obs.disconnect();
+                        }
+                    });
+                    docObserver.observe(document, { childList: true, subtree: true });
+                }
+            }
+        }
+        
+        // Пытаемся вставить стили сразу
+        injectStyles();
+        
+        // Также вставляем при готовности DOM
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', injectStyles);
+        } else {
+            injectStyles();
+        }
+        
+        // Применяем inline стили напрямую к элементам для мгновенного эффекта
+        function applyInlineStyles() {
+            if (document.documentElement) {
+                document.documentElement.style.setProperty('background-color', '#000000', 'important');
+                document.documentElement.style.setProperty('background', '#000000', 'important');
+            }
+            if (document.body) {
+                document.body.style.setProperty('background-color', '#000000', 'important');
+                document.body.style.setProperty('background', '#000000', 'important');
+            }
+            const header = document.getElementById('header');
+            if (header) {
+                header.style.setProperty('background-color', '#0E0E0E', 'important');
+                header.style.setProperty('background', '#0E0E0E', 'important');
+            }
+        }
+        
+        // Применяем inline стили сразу
+        applyInlineStyles();
+        
+        // Наблюдаем за появлением элементов и применяем стили
+        const inlineObserver = new MutationObserver(function() {
+            applyInlineStyles();
+        });
+        
+        if (document.documentElement) {
+            inlineObserver.observe(document.documentElement, {
+                childList: true,
+                subtree: true
             });
-            observer.observe(document.documentElement, { childList: true });
+        }
+        
+        // Также применяем при DOMContentLoaded
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                applyInlineStyles();
+                setTimeout(applyInlineStyles, 0);
+                setTimeout(applyInlineStyles, 10);
+                setTimeout(applyInlineStyles, 50);
+            });
+        } else {
+            setTimeout(applyInlineStyles, 0);
+            setTimeout(applyInlineStyles, 10);
+            setTimeout(applyInlineStyles, 50);
         }
     })();
 
