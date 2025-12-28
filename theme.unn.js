@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Best Theme ННГУ
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.2
 // @description  Делает тему портала мега крутой
 // @author       You
 // @match        https://portal.unn.ru/*
