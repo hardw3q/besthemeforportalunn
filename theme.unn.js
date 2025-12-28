@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name         Pornhub ННГУ Logo Replacement
+// @name         Best Theme ННГУ
 // @namespace    http://tampermonkey.net/
 // @version      1.0
-// @description  Заменяет логотип ННГУ на стиль Pornhub
+// @description  Делает тему портала мега крутой
 // @author       You
 // @match        https://portal.unn.ru/*
 // @match        http://portal.unn.ru/*
