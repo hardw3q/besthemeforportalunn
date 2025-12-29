@@ -1,4 +1,4 @@
-﻿# Pornhub UNN Chrome extension
+﻿# Dark UNN Chrome extension
 
 1. Откройте chrome://extensions и включите «Режим разработчика».
 2. Нажмите «Загрузить распакованное» и выберите папку chrome-extension в этом репозитории.
