@@ -749,7 +749,453 @@
                 document.head.appendChild(style);
             }
         }
-    
+
+        function stylePageHeaderToolbar() {
+            const headerBlocks = document.querySelectorAll(
+                '.bx-layout-inner-inner-top-row, .page-header, .page-navigation, .page-toolbar, .ui-toolbar, .ui-toolbar-title-box, .ui-toolbar-title-inner, .ui-toolbar-title-item-box, .pagetitle-below'
+            );
+            headerBlocks.forEach((el) => {
+                el.style.setProperty('background-color', '#000000', 'important');
+                el.style.setProperty('background', '#000000', 'important');
+                el.style.setProperty('color', '#c6c6c6', 'important');
+            });
+
+            const pageTitle = document.getElementById('pagetitle');
+            if (pageTitle) {
+                pageTitle.style.setProperty('color', '#c6c6c6', 'important');
+            }
+
+            const toolbarStar = document.querySelector('.ui-toolbar-star');
+            if (toolbarStar) {
+                toolbarStar.style.setProperty('filter', 'brightness(0) invert(1)', 'important');
+            }
+
+            if (!document.getElementById('pornhub-page-header-toolbar-styles')) {
+                const style = document.createElement('style');
+                style.id = 'pornhub-page-header-toolbar-styles';
+                style.textContent = `
+                    .bx-layout-inner-inner-top-row,
+                    .page-header,
+                    .page-navigation,
+                    .page-toolbar,
+                    .ui-toolbar,
+                    .ui-toolbar-title-box,
+                    .ui-toolbar-title-inner,
+                    .ui-toolbar-title-item-box,
+                    .pagetitle-below {
+                        background-color: #000000 !important;
+                        background: #000000 !important;
+                        color: #c6c6c6 !important;
+                        border: none !important;
+                        box-shadow: none !important;
+                        outline: none !important;
+                    }
+                    #pagetitle {
+                        color: #c6c6c6 !important;
+                    }
+                    .ui-toolbar-star {
+                        filter: brightness(0) invert(1) !important;
+                    }
+                    .ui-toolbar .ui-btn,
+                    .ui-toolbar .ui-btn-text,
+                    .ui-toolbar a,
+                    .ui-toolbar button {
+                        color: #c6c6c6 !important;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+
+        function styleScheduleNavbar() {
+            const navbars = document.querySelectorAll('nav.navbar');
+            navbars.forEach((nav) => {
+                nav.style.setProperty('background-color', '#000000', 'important');
+                nav.style.setProperty('background', '#000000', 'important');
+                nav.style.setProperty('color', '#c6c6c6', 'important');
+                nav.style.setProperty('border', 'none', 'important');
+                nav.style.setProperty('box-shadow', 'none', 'important');
+            });
+
+            const brandTexts = document.querySelectorAll('.navbar-brand, .navbar-brand span');
+            brandTexts.forEach((el) => {
+                el.style.setProperty('color', '#FF9900', 'important');
+            });
+
+            const navLinks = document.querySelectorAll('.navbar .nav-link, .navbar .btn-link');
+            navLinks.forEach((link) => {
+                link.style.setProperty('color', '#c6c6c6', 'important');
+            });
+
+            const activeLinks = document.querySelectorAll('.navbar .nav-link.active, .navbar .btn-link.active, .navbar .nav-item.active .nav-link');
+            activeLinks.forEach((link) => {
+                link.style.setProperty('color', '#FF9900', 'important');
+            });
+
+            const togglers = document.querySelectorAll('.navbar-toggler');
+            togglers.forEach((btn) => {
+                btn.style.setProperty('border', '1px solid #333333', 'important');
+                btn.style.setProperty('filter', 'invert(1)', 'important');
+            });
+
+            const images = document.querySelectorAll('.navbar img');
+            images.forEach((img) => {
+                img.style.setProperty('border-radius', '6px', 'important');
+            });
+
+            if (!document.getElementById('pornhub-ruz-navbar-styles')) {
+                const style = document.createElement('style');
+                style.id = 'pornhub-ruz-navbar-styles';
+                style.textContent = `
+                    nav.navbar {
+                        background-color: #000000 !important;
+                        background: #000000 !important;
+                        color: #c6c6c6 !important;
+                        border: none !important;
+                        box-shadow: none !important;
+                    }
+                    nav.navbar .navbar-brand,
+                    nav.navbar .navbar-brand span {
+                        color: #FF9900 !important;
+                    }
+                    nav.navbar .nav-link,
+                    nav.navbar .btn-link {
+                        color: #c6c6c6 !important;
+                    }
+                    nav.navbar .nav-link.active,
+                    nav.navbar .btn-link.active,
+                    nav.navbar .nav-item.active .nav-link {
+                        color: #FF9900 !important;
+                    }
+                    nav.navbar .navbar-toggler {
+                        border: 1px solid #333333 !important;
+                        filter: invert(1) !important;
+                    }
+                    nav.navbar img {
+                        border-radius: 6px !important;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+
+        function styleRuzDates() {
+            const dateBoxes = document.querySelectorAll('ruz-date .box');
+            dateBoxes.forEach((box) => {
+                box.style.setProperty('background-color', '#1a1a1a', 'important');
+                box.style.setProperty('background', '#1a1a1a', 'important');
+                box.style.setProperty('color', '#c6c6c6', 'important');
+                box.style.setProperty('border', '1px solid #333333', 'important');
+                box.style.setProperty('border-radius', '6px', 'important');
+            });
+
+            const wrappers = document.querySelectorAll('ruz-date, ruz-date .box-wrapper');
+            wrappers.forEach((wrap) => {
+                wrap.style.setProperty('background', 'transparent', 'important');
+                wrap.style.setProperty('border', 'none', 'important');
+                wrap.style.setProperty('box-shadow', 'none', 'important');
+            });
+
+            const weeks = document.querySelectorAll('ruz-date .week');
+            weeks.forEach((el) => {
+                el.style.setProperty('color', '#FF9900', 'important');
+            });
+
+            const days = document.querySelectorAll('ruz-date .day');
+            days.forEach((el) => {
+                el.style.setProperty('color', '#FF9900', 'important');
+                el.style.setProperty('font-weight', 'bold', 'important');
+                el.style.setProperty('background', 'transparent', 'important');
+            });
+
+            const months = document.querySelectorAll('ruz-date .month');
+            months.forEach((el) => {
+                el.style.setProperty('color', '#c6c6c6', 'important');
+            });
+
+            if (!document.getElementById('pornhub-ruz-date-styles')) {
+                const style = document.createElement('style');
+                style.id = 'pornhub-ruz-date-styles';
+                style.textContent = `
+                    ruz-date,
+                    ruz-date .box-wrapper {
+                        background: transparent !important;
+                        border: none !important;
+                        box-shadow: none !important;
+                    }
+                    ruz-date .box {
+                        background-color: #1a1a1a !important;
+                        background: #1a1a1a !important;
+                        color: #c6c6c6 !important;
+                        border: 1px solid #333333 !important;
+                        border-radius: 6px !important;
+                        display: inline-block;
+                    }
+                    ruz-date .week {
+                        color: #FF9900 !important;
+                    }
+                    ruz-date .day {
+                        color: #FF9900 !important;
+                        font-weight: bold !important;
+                        background: transparent !important;
+                    }
+                    ruz-date .month {
+                        color: #c6c6c6 !important;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+
+        function styleRuzTimeBlocks() {
+            const timeBlocks = document.querySelectorAll('.time, .lesson .time, .lessons-list .time, .schedule .time');
+            timeBlocks.forEach((el) => {
+                el.style.setProperty('background', 'transparent', 'important');
+                el.style.setProperty('color', '#c6c6c6', 'important');
+                el.style.setProperty('border', 'none', 'important');
+                el.style.setProperty('box-shadow', 'none', 'important');
+            });
+
+            if (!document.getElementById('pornhub-ruz-time-styles')) {
+                const style = document.createElement('style');
+                style.id = 'pornhub-ruz-time-styles';
+                style.textContent = `
+                    .time,
+                    .lesson .time,
+                    .lessons-list .time,
+                    .schedule .time {
+                        background: transparent !important;
+                        color: #c6c6c6 !important;
+                        border: none !important;
+                        box-shadow: none !important;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+
+        function styleDxSelectInputs() {
+            const inputs = document.querySelectorAll('.dx-dropdowneditor-input-wrapper, .dx-selectbox-container, .dx-texteditor, .dx-texteditor-input-container, .dx-texteditor-input');
+            inputs.forEach((el) => {
+                el.style.setProperty('background', '#292929', 'important');
+                el.style.setProperty('color', '#c6c6c6', 'important');
+                el.style.setProperty('border', '1px solid #333333', 'important');
+                el.style.setProperty('border-radius', '4px', 'important');
+            });
+
+            const placeholders = document.querySelectorAll('.dx-placeholder');
+            placeholders.forEach((el) => {
+                el.style.setProperty('color', '#888888', 'important');
+                el.style.setProperty('background', 'transparent', 'important');
+            });
+
+            const buttons = document.querySelectorAll('.dx-dropdowneditor-button, .dx-clear-button-area');
+            buttons.forEach((el) => {
+                el.style.setProperty('background', '#292929', 'important');
+                el.style.setProperty('border', 'none', 'important');
+            });
+
+            if (!document.getElementById('pornhub-dx-select-styles')) {
+                const style = document.createElement('style');
+                style.id = 'pornhub-dx-select-styles';
+                style.textContent = `
+                    .dx-dropdowneditor-input-wrapper,
+                    .dx-selectbox-container,
+                    .dx-texteditor,
+                    .dx-texteditor-input-container,
+                    .dx-texteditor-input {
+                        background: #292929 !important;
+                        color: #c6c6c6 !important;
+                        border: 1px solid #333333 !important;
+                        border-radius: 4px !important;
+                    }
+                    .dx-texteditor-input {
+                        padding-left: 8px !important;
+                    }
+                    .dx-placeholder {
+                        color: #888888 !important;
+                        background: transparent !important;
+                    }
+                    .dx-dropdowneditor-button,
+                    .dx-clear-button-area {
+                        background: #292929 !important;
+                        border: none !important;
+                    }
+                    .dx-button-content,
+                    .dx-icon,
+                    .dx-dropdowneditor-icon {
+                        color: #c6c6c6 !important;
+                        fill: #c6c6c6 !important;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+
+        function styleContractsTable() {
+            const tables = document.querySelectorAll('.p-datatable, .p-datatable-table, .p-datatable-wrapper');
+            tables.forEach((table) => {
+                table.style.setProperty('background-color', '#000000', 'important');
+                table.style.setProperty('background', '#000000', 'important');
+                table.style.setProperty('color', '#c6c6c6', 'important');
+            });
+
+            const headers = document.querySelectorAll('.p-datatable-thead, .p-datatable-thead th, .p-datatable-thead tr');
+            headers.forEach((el) => {
+                el.style.setProperty('background-color', '#151515', 'important');
+                el.style.setProperty('background', '#151515', 'important');
+                el.style.setProperty('color', '#c6c6c6', 'important');
+                el.style.setProperty('border-color', '#333333', 'important');
+            });
+
+            const bodyCells = document.querySelectorAll('.p-datatable-tbody, .p-datatable-tbody tr, .p-datatable-tbody td');
+            bodyCells.forEach((el) => {
+                el.style.setProperty('background-color', '#000000', 'important');
+                el.style.setProperty('background', '#000000', 'important');
+                el.style.setProperty('color', '#c6c6c6', 'important');
+                el.style.setProperty('border-color', '#333333', 'important');
+            });
+
+            const hoverRows = document.querySelectorAll('.p-datatable-hoverable-rows .p-datatable-tbody tr');
+            hoverRows.forEach((row) => {
+                row.addEventListener('mouseenter', () => {
+                    row.style.setProperty('background-color', '#1a1a1a', 'important');
+                });
+                row.addEventListener('mouseleave', () => {
+                    row.style.setProperty('background-color', '#000000', 'important');
+                });
+            });
+
+            const links = document.querySelectorAll('.p-datatable a, .p-datatable .link');
+            links.forEach((link) => {
+                link.style.setProperty('color', '#FF9900', 'important');
+            });
+
+            const sortIcons = document.querySelectorAll('.p-sortable-column-icon, .p-icon');
+            sortIcons.forEach((icon) => {
+                icon.style.setProperty('color', '#c6c6c6', 'important');
+                icon.style.setProperty('fill', '#c6c6c6', 'important');
+            });
+
+            const popups = document.querySelectorAll('.dx-popup, .dx-popup-content, .dx-overlay-content, .dx-loadpanel, .dx-loadpanel-content');
+            popups.forEach((popup) => {
+                popup.style.setProperty('background-color', '#151515', 'important');
+                popup.style.setProperty('background', '#151515', 'important');
+                popup.style.setProperty('color', '#c6c6c6', 'important');
+            });
+
+            if (!document.getElementById('pornhub-contracts-table-styles')) {
+                const style = document.createElement('style');
+                style.id = 'pornhub-contracts-table-styles';
+                style.textContent = `
+                    .p-datatable,
+                    .p-datatable-table,
+                    .p-datatable-wrapper {
+                        background-color: #000000 !important;
+                        background: #000000 !important;
+                        color: #c6c6c6 !important;
+                    }
+                    .p-datatable-thead,
+                    .p-datatable-thead th,
+                    .p-datatable-thead tr {
+                        background-color: #151515 !important;
+                        background: #151515 !important;
+                        color: #c6c6c6 !important;
+                        border-color: #333333 !important;
+                    }
+                    .p-datatable-tbody,
+                    .p-datatable-tbody tr,
+                    .p-datatable-tbody td {
+                        background-color: #000000 !important;
+                        background: #000000 !important;
+                        color: #c6c6c6 !important;
+                        border-color: #333333 !important;
+                    }
+                    .p-datatable-hoverable-rows .p-datatable-tbody tr:hover {
+                        background-color: #1a1a1a !important;
+                    }
+                    .p-datatable a,
+                    .p-datatable .link {
+                        color: #FF9900 !important;
+                    }
+                    .p-sortable-column-icon,
+                    .p-icon {
+                        color: #c6c6c6 !important;
+                        fill: #c6c6c6 !important;
+                    }
+                    .dx-popup,
+                    .dx-popup-content,
+                    .dx-overlay-content,
+                    .dx-loadpanel,
+                    .dx-loadpanel-content {
+                        background-color: #151515 !important;
+                        background: #151515 !important;
+                        color: #c6c6c6 !important;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+
+        function styleCardTiles() {
+            const tiles = document.querySelectorAll('.dx-item.dx-tile, .dx-tile-content, .dx-template-wrapper.card-list-item');
+            tiles.forEach((tile) => {
+                tile.style.setProperty('background-color', '#151515', 'important');
+                tile.style.setProperty('background', '#151515', 'important');
+                tile.style.setProperty('color', '#c6c6c6', 'important');
+                tile.style.setProperty('border', '1px solid #333333', 'important');
+                tile.style.setProperty('border-radius', '8px', 'important');
+            });
+
+            const titles = document.querySelectorAll('.card-list-item-title-text, .card-list-item-subtitle');
+            titles.forEach((el) => {
+                el.style.setProperty('color', '#c6c6c6', 'important');
+            });
+
+            const buttons = document.querySelectorAll('.card-list-item .dx-button-default, .card-list-item .dx-button');
+            buttons.forEach((btn) => {
+                btn.style.setProperty('background-color', '#FF9900', 'important');
+                btn.style.setProperty('background', '#FF9900', 'important');
+                btn.style.setProperty('color', '#000000', 'important');
+                btn.style.setProperty('border', 'none', 'important');
+            });
+
+            const buttonTexts = document.querySelectorAll('.card-list-item .dx-button-text');
+            buttonTexts.forEach((txt) => {
+                txt.style.setProperty('color', '#000000', 'important');
+            });
+
+            if (!document.getElementById('pornhub-card-tiles-styles')) {
+                const style = document.createElement('style');
+                style.id = 'pornhub-card-tiles-styles';
+                style.textContent = `
+                    .dx-item.dx-tile,
+                    .dx-tile-content,
+                    .dx-template-wrapper.card-list-item {
+                        background-color: #151515 !important;
+                        background: #151515 !important;
+                        color: #c6c6c6 !important;
+                        border: 1px solid #333333 !important;
+                        border-radius: 8px !important;
+                    }
+                    .card-list-item-title-text,
+                    .card-list-item-subtitle {
+                        color: #c6c6c6 !important;
+                    }
+                    .card-list-item .dx-button-default,
+                    .card-list-item .dx-button {
+                        background-color: #FF9900 !important;
+                        background: #FF9900 !important;
+                        color: #000000 !important;
+                        border: none !important;
+                    }
+                    .card-list-item .dx-button-text {
+                        color: #000000 !important;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
         function styleFeedItems() {
             const feedItems = document.querySelectorAll('.feed-item-wrap, .feed-post-block');
             
@@ -965,6 +1411,28 @@
                     }
                     .menu-item-link-animation {
                         display: none !important;
+                    }
+                    .menu-item-active,
+                    .menu-item-block.menu-item-active,
+                    .menu-item-link.menu-item-active {
+                        background-color: transparent !important;
+                        background: transparent !important;
+                        color: #c6c6c6 !important;
+                    }
+                    .menu-item-active a,
+                    .menu-item-block.menu-item-active a,
+                    .menu-item-link.menu-item-active a {
+                        color: #c6c6c6 !important;
+                    }
+                    .menu-item-active .menu-item-link-text,
+                    .menu-item-block.menu-item-active .menu-item-link-text,
+                    .menu-item-link.menu-item-active .menu-item-link-text {
+                        background-color: #FF9900 !important;
+                        background: #FF9900 !important;
+                        color: #000000 !important;
+                        border-radius: 14px !important;
+                        padding: 4px 10px !important;
+                        display: inline-block !important;
                     }
                 `;
                 document.head.appendChild(style);
@@ -1356,6 +1824,13 @@
                 styleFeedAddPostForm();
                 styleSidebarWidgetTasks();
                 stylePagetitleWrap();
+                stylePageHeaderToolbar();
+                styleScheduleNavbar();
+                styleRuzDates();
+                styleRuzTimeBlocks();
+                styleDxSelectInputs();
+                styleContractsTable();
+                styleCardTiles();
                 styleFeedItems();
                 styleMenuItems();
                 styleWorkareaContent();
@@ -1369,6 +1844,13 @@
             styleFeedAddPostForm();
             styleSidebarWidgetTasks();
             stylePagetitleWrap();
+            stylePageHeaderToolbar();
+            styleScheduleNavbar();
+            styleRuzDates();
+            styleRuzTimeBlocks();
+            styleDxSelectInputs();
+            styleContractsTable();
+            styleCardTiles();
             styleFeedItems();
             styleMenuItems();
             styleWorkareaContent();
@@ -1383,6 +1865,13 @@
             styleFeedAddPostForm();
             styleSidebarWidgetTasks();
             stylePagetitleWrap();
+            stylePageHeaderToolbar();
+            styleScheduleNavbar();
+            styleRuzDates();
+            styleRuzTimeBlocks();
+            styleDxSelectInputs();
+            styleContractsTable();
+            styleCardTiles();
             styleFeedItems();
             styleMenuItems();
             styleWorkareaContent();
@@ -1396,6 +1885,13 @@
             styleFeedAddPostForm();
             styleSidebarWidgetTasks();
             stylePagetitleWrap();
+            stylePageHeaderToolbar();
+            styleScheduleNavbar();
+            styleRuzDates();
+            styleRuzTimeBlocks();
+            styleDxSelectInputs();
+            styleContractsTable();
+            styleCardTiles();
             styleFeedItems();
             styleMenuItems();
             styleWorkareaContent();
@@ -1410,6 +1906,13 @@
             styleFeedAddPostForm();
             styleSidebarWidgetTasks();
             stylePagetitleWrap();
+            stylePageHeaderToolbar();
+            styleScheduleNavbar();
+            styleRuzDates();
+            styleRuzTimeBlocks();
+            styleDxSelectInputs();
+            styleContractsTable();
+            styleCardTiles();
             styleFeedItems();
             styleMenuItems();
             styleWorkareaContent();
