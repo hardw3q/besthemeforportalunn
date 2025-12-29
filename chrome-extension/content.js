@@ -522,6 +522,10 @@
             const taskWidgets = document.querySelectorAll('.sidebar-widget-tasks, .sidebar-widget-popular');
             
             taskWidgets.forEach(function(widget) {
+                if (widget.classList.contains('sidebar-widget-tasks')) {
+                    widget.style.setProperty('display', 'none', 'important');
+                    return;
+                }
                 widget.style.setProperty('background-color', '#151515', 'important');
                 widget.style.setProperty('background', '#151515', 'important');
                 
@@ -584,6 +588,9 @@
                 const style = document.createElement('style');
                 style.id = 'pornhub-sidebar-widget-tasks-styles';
                 style.textContent = `
+                    .sidebar-widget-tasks {
+                        display: none !important;
+                    }
                     .sidebar-widget-tasks,
                     .sidebar-widget-popular {
                         background-color: #151515 !important;
@@ -1195,6 +1202,259 @@
                 `;
                 document.head.appendChild(style);
             }
+        }
+
+        function styleAuthPopup() {
+            const popups = document.querySelectorAll('.popup-window.ui-popupcomponentmaker, .ui-popupcomponentmaker__content, .ui-popupcomponentmaker__content--section, .ui-popupcomponentmaker__content--section-item, .system-auth-form__item');
+            popups.forEach((el) => {
+                el.style.setProperty('background-color', '#151515', 'important');
+                el.style.setProperty('background', '#151515', 'important');
+                el.style.setProperty('color', '#c6c6c6', 'important');
+                el.style.setProperty('border-color', '#333333', 'important');
+            });
+
+            const titles = document.querySelectorAll('.system-auth-form__item-title, .system-auth-form__profile-name, .system-auth-form__profile-position, .system-auth-form__item-title span');
+            titles.forEach((el) => {
+                el.style.setProperty('color', '#c6c6c6', 'important');
+            });
+
+            const buttons = document.querySelectorAll('.ui-qr-popupcomponentmaker__btn, .ui-qr-popupcomponentmaker__btn.--border, .system-auth-form__profile-controls .ui-qr-popupcomponentmaker__btn');
+            buttons.forEach((btn) => {
+                btn.style.setProperty('background-color', '#FF9900', 'important');
+                btn.style.setProperty('background', '#FF9900', 'important');
+                btn.style.setProperty('color', '#000000', 'important');
+                btn.style.setProperty('border', 'none', 'important');
+            });
+
+            const disabledButtons = document.querySelectorAll('.ui-qr-popupcomponentmaker__btn.--disabled');
+            disabledButtons.forEach((btn) => {
+                btn.style.setProperty('background', '#333333', 'important');
+                btn.style.setProperty('color', '#c6c6c6', 'important');
+            });
+
+            const popupArrows = document.querySelectorAll('.popup-window-angly, .popup-window-angly--arrow');
+            popupArrows.forEach((el) => {
+                el.style.setProperty('filter', 'invert(1)', 'important');
+            });
+
+            if (!document.getElementById('pornhub-auth-popup-styles')) {
+                const style = document.createElement('style');
+                style.id = 'pornhub-auth-popup-styles';
+                style.textContent = `
+                    .popup-window.ui-popupcomponentmaker,
+                    .ui-popupcomponentmaker__content,
+                    .ui-popupcomponentmaker__content--section,
+                    .ui-popupcomponentmaker__content--section-item,
+                    .system-auth-form__item,
+                    .system-auth-form__scope {
+                        background-color: #151515 !important;
+                        background: #151515 !important;
+                        color: #c6c6c6 !important;
+                        border-color: #333333 !important;
+                    }
+                    .system-auth-form__item-title,
+                    .system-auth-form__profile-name,
+                    .system-auth-form__profile-position,
+                    .system-auth-form__item-title span,
+                    .system-auth-form__item-content,
+                    .system-auth-form__item-container {
+                        color: #c6c6c6 !important;
+                    }
+                    .ui-qr-popupcomponentmaker__btn,
+                    .ui-qr-popupcomponentmaker__btn.--border,
+                    .system-auth-form__profile-controls .ui-qr-popupcomponentmaker__btn {
+                        background-color: #FF9900 !important;
+                        background: #FF9900 !important;
+                        color: #000000 !important;
+                        border: none !important;
+                    }
+                    .ui-qr-popupcomponentmaker__btn.--disabled {
+                        background: #333333 !important;
+                        color: #c6c6c6 !important;
+                    }
+                    .popup-window-content {
+                        background: transparent !important;
+                    }
+                    .popup-window-angly,
+                    .popup-window-angly--arrow {
+                        filter: invert(1) !important;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+
+        function styleProfileCards() {
+            const cards = document.querySelectorAll('.profile .profile__card');
+            cards.forEach((card) => {
+                card.style.setProperty('background-color', 'transparent', 'important');
+                card.style.setProperty('background', 'transparent', 'important');
+                card.style.setProperty('color', '#c6c6c6', 'important');
+                card.style.setProperty('border', 'none', 'important');
+                card.style.setProperty('box-shadow', 'none', 'important');
+                card.style.setProperty('border-radius', '0', 'important');
+            });
+
+            const userCards = document.querySelectorAll('.user .user__card');
+            userCards.forEach((card) => {
+                card.style.setProperty('background-color', '#000000', 'important');
+                card.style.setProperty('background', '#000000', 'important');
+                card.style.setProperty('color', '#c6c6c6', 'important');
+                card.style.setProperty('border', 'none', 'important');
+                card.style.setProperty('box-shadow', 'none', 'important');
+            });
+
+            if (!document.getElementById('pornhub-profile-cards-styles')) {
+                const style = document.createElement('style');
+                style.id = 'pornhub-profile-cards-styles';
+                style.textContent = `
+                    .profile .profile__card {
+                        background-color: transparent !important;
+                        background: transparent !important;
+                        color: #c6c6c6 !important;
+                        border: none !important;
+                        box-shadow: none !important;
+                        border-radius: 0 !important;
+                    }
+                    .user .user__card {
+                        background-color: #000000 !important;
+                        background: #000000 !important;
+                        color: #c6c6c6 !important;
+                        border: none !important;
+                        box-shadow: none !important;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+
+        function styleProfileButtons() {
+            const primaryButtons = document.querySelectorAll('.buttons .dx-button-default, .buttons .dx-button-mode-contained.dx-button-default');
+            primaryButtons.forEach((btn) => {
+                btn.style.setProperty('background-color', '#FF9900', 'important');
+                btn.style.setProperty('background', '#FF9900', 'important');
+                btn.style.setProperty('color', '#000000', 'important');
+                btn.style.setProperty('border', 'none', 'important');
+                btn.style.setProperty('border-radius', '6px', 'important');
+            });
+
+            const secondaryButtons = document.querySelectorAll('.buttons .dx-button-normal, .buttons .dx-button-mode-contained.dx-button-normal');
+            secondaryButtons.forEach((btn) => {
+                btn.style.setProperty('background-color', 'transparent', 'important');
+                btn.style.setProperty('background', 'transparent', 'important');
+                btn.style.setProperty('color', '#c6c6c6', 'important');
+                btn.style.setProperty('border', '1px solid #333333', 'important');
+                btn.style.setProperty('border-radius', '6px', 'important');
+            });
+
+            const texts = document.querySelectorAll('.buttons .dx-button-text');
+            texts.forEach((txt) => {
+                // inherit from parent styles
+                txt.style.setProperty('color', txt.parentElement?.parentElement?.classList.contains('dx-button-default') ? '#000000' : '#c6c6c6', 'important');
+            });
+
+            if (!document.getElementById('pornhub-profile-buttons-styles')) {
+                const style = document.createElement('style');
+                style.id = 'pornhub-profile-buttons-styles';
+                style.textContent = `
+                    .buttons .dx-button-default,
+                    .buttons .dx-button-mode-contained.dx-button-default {
+                        background-color: #FF9900 !important;
+                        background: #FF9900 !important;
+                        color: #000000 !important;
+                        border: none !important;
+                        border-radius: 6px !important;
+                    }
+                    .buttons .dx-button-normal,
+                    .buttons .dx-button-mode-contained.dx-button-normal {
+                        background-color: transparent !important;
+                        background: transparent !important;
+                        color: #c6c6c6 !important;
+                        border: 1px solid #333333 !important;
+                        border-radius: 6px !important;
+                    }
+                    .buttons .dx-button-text {
+                        color: inherit !important;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+
+        function styleUserButtons() {
+            const primaryButtons = document.querySelectorAll('.user .dx-button-default, .user .dx-button-mode-contained.dx-button-default');
+            primaryButtons.forEach((btn) => {
+                btn.style.setProperty('background-color', '#FF9900', 'important');
+                btn.style.setProperty('background', '#FF9900', 'important');
+                btn.style.setProperty('color', '#000000', 'important');
+                btn.style.setProperty('border', 'none', 'important');
+                btn.style.setProperty('border-radius', '6px', 'important');
+            });
+
+            const secondaryButtons = document.querySelectorAll('.user .dx-button-normal, .user .dx-button-mode-contained.dx-button-normal');
+            secondaryButtons.forEach((btn) => {
+                btn.style.setProperty('background-color', 'transparent', 'important');
+                btn.style.setProperty('background', 'transparent', 'important');
+                btn.style.setProperty('color', '#c6c6c6', 'important');
+                btn.style.setProperty('border', '1px solid #333333', 'important');
+                btn.style.setProperty('border-radius', '6px', 'important');
+            });
+
+            const texts = document.querySelectorAll('.user .dx-button-text');
+            texts.forEach((txt) => {
+                txt.style.setProperty('color', txt.closest('.dx-button')?.classList.contains('dx-button-default') ? '#000000' : '#c6c6c6', 'important');
+            });
+
+            if (!document.getElementById('pornhub-user-buttons-styles')) {
+                const style = document.createElement('style');
+                style.id = 'pornhub-user-buttons-styles';
+                style.textContent = `
+                    .user .dx-button-default,
+                    .user .dx-button-mode-contained.dx-button-default {
+                        background-color: #FF9900 !important;
+                        background: #FF9900 !important;
+                        color: #000000 !important;
+                        border: none !important;
+                        border-radius: 6px !important;
+                    }
+                    .user .dx-button-normal,
+                    .user .dx-button-mode-contained.dx-button-normal {
+                        background-color: transparent !important;
+                        background: transparent !important;
+                        color: #c6c6c6 !important;
+                        border: 1px solid #333333 !important;
+                        border-radius: 6px !important;
+                    }
+                    .user .dx-button-text {
+                        color: inherit !important;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        }
+        function setRootButtonVariables() {
+            if (document.getElementById('pornhub-root-button-vars')) {
+                return;
+            }
+            const style = document.createElement('style');
+            style.id = 'pornhub-root-button-vars';
+            style.textContent = `
+                :root {
+                    --ui-btn-background: #FF9900 !important;
+                    --ui-btn-background-hover: #FFAA00 !important;
+                    --ui-btn-background-active: #E68A00 !important;
+                    --ui-btn-border-color: #FF9900 !important;
+                    --ui-btn-border-color-hover: #FFAA00 !important;
+                    --ui-btn-border-color-active: #E68A00 !important;
+                    --ui-btn-border: 1px solid var(--ui-btn-border-color) !important;
+                    --ui-btn-color: #000000 !important;
+                    --ui-btn-color-hover: #000000 !important;
+                    --ui-btn-color-active: #000000 !important;
+                    --ui-btn-colors-after-bg: #000000 !important;
+                    --ui-btn-colors-before-bg: #000000 !important;
+                }
+            `;
+            document.head.appendChild(style);
         }
         function styleFeedItems() {
             const feedItems = document.querySelectorAll('.feed-item-wrap, .feed-post-block');
@@ -1831,6 +2091,11 @@
                 styleDxSelectInputs();
                 styleContractsTable();
                 styleCardTiles();
+                styleAuthPopup();
+                styleProfileCards();
+                styleProfileButtons();
+                styleUserButtons();
+                setRootButtonVariables();
                 styleFeedItems();
                 styleMenuItems();
                 styleWorkareaContent();
@@ -1851,6 +2116,11 @@
             styleDxSelectInputs();
             styleContractsTable();
             styleCardTiles();
+            styleAuthPopup();
+            styleProfileCards();
+            styleProfileButtons();
+            styleUserButtons();
+            setRootButtonVariables();
             styleFeedItems();
             styleMenuItems();
             styleWorkareaContent();
@@ -1872,6 +2142,11 @@
             styleDxSelectInputs();
             styleContractsTable();
             styleCardTiles();
+            styleAuthPopup();
+            styleProfileCards();
+            styleProfileButtons();
+            styleUserButtons();
+            setRootButtonVariables();
             styleFeedItems();
             styleMenuItems();
             styleWorkareaContent();
@@ -1892,6 +2167,11 @@
             styleDxSelectInputs();
             styleContractsTable();
             styleCardTiles();
+            styleAuthPopup();
+            styleProfileCards();
+            styleProfileButtons();
+            styleUserButtons();
+            setRootButtonVariables();
             styleFeedItems();
             styleMenuItems();
             styleWorkareaContent();
@@ -1913,6 +2193,11 @@
             styleDxSelectInputs();
             styleContractsTable();
             styleCardTiles();
+            styleAuthPopup();
+            styleProfileCards();
+            styleProfileButtons();
+            styleUserButtons();
+            setRootButtonVariables();
             styleFeedItems();
             styleMenuItems();
             styleWorkareaContent();
